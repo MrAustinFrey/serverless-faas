@@ -4,6 +4,7 @@ const FaasProvider = require("./provider")
 const FaaSDeploy = require('./deploy');
 const FaaSRemove = require('./remove');
 const FaaSInvoke = require('./invoke');
+const FaaSBuild = require('./build');
 
 class FaaSIndex {
   constructor(serverless, options) {
@@ -15,6 +16,7 @@ class FaaSIndex {
     this.serverless.pluginManager.addPlugin(FaaSDeploy);
     this.serverless.pluginManager.addPlugin(FaaSRemove);
     this.serverless.pluginManager.addPlugin(FaaSInvoke);
+    this.serverless.pluginManager.addPlugin(FaaSBuild);
   }
 }
 

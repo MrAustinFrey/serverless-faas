@@ -13,7 +13,7 @@ class FaaSRemove {
             "remove:remove": () => BbPromise.bind(this).then(this.removeFunction)
         };
 
-        this.serverless.cli.log("Configuring FaaS Remove plugin");    
+        this.serverless.cli.log("Configuring FaaS Remove plugin");
     }
 
     removeFunction() {

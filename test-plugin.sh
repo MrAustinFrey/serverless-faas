@@ -8,10 +8,13 @@ cp -r faas driver/node_modules/serverless-faas
 cp serverless.yml driver/
 cp handler.js driver/
 cp package.json driver/
+cp Dockerfile driver/
 
 cd driver/
 
 SLS_DEBUG=* serverless $1 $2 $3 $4 $5
+SLS_DEBUG=* serverless build
+echo building
 SLS_DEBUG=* serverless deploy
 echo "deployed"
 SLS_DEBUG=* serverless invoke -f hello -l

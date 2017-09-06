@@ -5,12 +5,20 @@ describe("FaaS provider", () => {
     let FaaS = require("./faas");
 
     it("creates a new instance", ()=> {
-        let serverless = { pluginManager: { setProvider:()=>{}, addPlugin: function(){} } } ;
+        let serverless = {
+          pluginManager: {
+            setProvider:()=>{},
+            addPlugin: function(){}
+          },
+          cli: {
+            log: console.log
+          }
+        };
         let opts = {};
         let faas = new FaaS(serverless, opts);
         expect(faas).to.exist;
         expect(faas.serverless).to.exist;
-        
+
     })
 });
 
