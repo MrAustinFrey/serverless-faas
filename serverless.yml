@@ -5,7 +5,7 @@ provider:
   runtime: nodejs6.10
 
 functions:
-  hello:
+  faas-hello-node:
     handler: handler.hello
 
 plugins:

@@ -4,9 +4,8 @@ const path = require('path')
 const ezUnzip = require('extract-zip')
 
 const unpack = () => {
-  console.log(process.cwd())
   ezUnzip(
-    path.join(__dirname, 'master.zip'),
+    path.join(__dirname, '../../../master.zip'),
     { dir: path.join(__dirname, '../../../templates') },
     (err) => {
       if (err) console.log(err)

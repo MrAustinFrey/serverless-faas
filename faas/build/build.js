@@ -10,7 +10,12 @@ const build = (imageName) => {
   console.log(__dirname)
   docker.buildImage({
     context: __dirname,
-    src: ['../../../Dockerfile', '../../../handler.js']
+    src: [
+      '../../../Dockerfile',
+      '../../../handler.js',
+      '../../../index.js',
+      '../../../package.json'
+    ]
   },{
     t: imageName
   }, (err, res) => {

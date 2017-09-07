@@ -9,6 +9,7 @@ cp serverless.yml driver/
 cp handler.js driver/
 cp package.json driver/
 cp Dockerfile driver/
+cp index.js driver/
 
 cd driver/
 
@@ -17,8 +18,8 @@ SLS_DEBUG=* serverless build
 echo building
 SLS_DEBUG=* serverless deploy
 echo "deployed"
-SLS_DEBUG=* serverless invoke -f hello -l
+SLS_DEBUG=* serverless invoke -f faas-hello-node -d "huhuhuh" -l
 echo "Hello invoked"
 
-SLS_DEBUG=* serverless remove
+SLS_DEBUG=* serverless remove -f faas-hello-node
 echo "removed"

@@ -24,8 +24,10 @@ class FaaSBuild {
         }
 
         this.hooks = {
-            "before:build:fetch": () => BbPromise.bind(this).then(this.fetchTemplate),
-            "build:build": () => BbPromise.bind(this).then(this.buildFunction)
+            "before:build:build": () => BbPromise.bind(this).then(() => this.fetchTemplate()),
+            "build:build": () => BbPromise.bind(this).then(() => this.buildFunction())
+            //"build:fetch": this.fetchTemplate.bind(this),
+            //"build:build": this.buildFunction.bind(this)
         };
 
         this.serverless.cli.log("Configuring FaaS Build plugin");
@@ -34,20 +36,21 @@ class FaaSBuild {
     buildFunction() {
         this.serverless.cli.log("Attempting to build");
 
-        return new BbPromise((resolve, reject) => {
+       return new BbPromise((resolve, reject) => {
             _.each(this.serverless.service.functions, (description, name) => {
                 this.serverless.cli.log("Attempting to build " + name);
-                // TODO build needs to accept a name
                 build(name)
             });
-
-            resolve();
+         resolve()
         });
     }
 
     fetchTemplate() {
       this.serverless.cli.log("Fetching template for build")
+      //return new BbPromise((resolve, reject) => {
       fetch()
+      //    resolve()
+      //})
     }
 }
 

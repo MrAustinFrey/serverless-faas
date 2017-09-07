@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 const BbPromise = require('bluebird');
+const got = require('got')
 
 class FaaSRemove {
     constructor(serverless, options) {
@@ -20,6 +21,18 @@ class FaaSRemove {
         return new BbPromise((resolve, reject) => {
             _.each(this.serverless.service.functions, (description, name) => {
                 this.serverless.cli.log("Attempting to remove " + name);
+
+                let options = {
+                  method: 'DELETE',
+                  json: true,
+                  body: {
+                    functionName: name
+                  }
+                }
+
+                got("http://localhost:8080/system/functions", options)
+                  .then((res) => console.log(res.body))
+                  .catch((err) => console.log(err))
             });
 
             resolve();
