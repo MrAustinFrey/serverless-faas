@@ -16,7 +16,7 @@ echo building
 SLS_DEBUG=* serverless deploy
 echo "deployed"
 SLS_DEBUG=* serverless invoke -f faas-hello-test -d "huhuhuh" -l
-echo "Hello invoked"
+echo "faas-hello-test invoked"
 
 SLS_DEBUG=* serverless remove
 echo "removed"

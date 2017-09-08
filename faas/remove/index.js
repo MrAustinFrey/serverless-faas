@@ -31,8 +31,8 @@ class FaaSRemove {
 				};
 
 				got('http://localhost:8080/system/functions', options)
-                  .then(res => console.log(res.body))
-                  .catch(err => console.log(err));
+                  .then(res => this.serverless.cli.log(res.body))
+                  .catch(err => this.serverless.cli.log(err));
 			});
 
 			resolve();
