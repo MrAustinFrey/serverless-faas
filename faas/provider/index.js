@@ -1,21 +1,21 @@
-"use strict"
+'use strict';
 
 const BbPromise = require('bluebird');
 
 const constants = {
-  "providerName": "faas"
+	providerName: 'faas'
 };
 
 class FaaSProvider {
-  constructor(serverless) {
-    this.serverless = serverless;
-    this.provider = this;
-    this.serverless.setProvider(constants.providerName, this);
-  }
+	constructor(serverless) {
+		this.serverless = serverless;
+		this.provider = this;
+		this.serverless.setProvider(constants.providerName, this);
+	}
 
-  static getProviderName() {
-    return constants.providerName;
-  }
+	static getProviderName() {
+		return constants.providerName;
+	}
 
 }
 

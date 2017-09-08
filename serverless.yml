@@ -5,8 +5,10 @@ provider:
   runtime: nodejs6.10
 
 functions:
-  faas-hello-node:
-    handler: handler.hello
+  faas-hello-test:
+    handler: ./serv
+    image: hello-serverless
+    lang: node
 
 plugins:
   - serverless-faas

@@ -5,47 +5,47 @@ const BbPromise = require('bluebird');
 const got = require('got');
 
 class FaaSInvoke {
-    constructor(serverless, options) {
-        this.serverless = serverless;
-        this.options = options || {};
-        this.provider = this.serverless.getProvider('faas');
-        this.command = {
-          invoke: {
-            lifecycleEvents: [
-              'invoke'
-            ]
-          },
-          options: {
-            data: {
-              shortcut: 'd'
-            }
-          }
-        }
+	constructor(serverless, options) {
+		this.serverless = serverless;
+		this.options = options || {};
+		this.provider = this.serverless.getProvider('faas');
+		this.command = {
+			invoke: {
+				lifecycleEvents: [
+					'invoke'
+				],
+				options: {
+					data: {
+						shortcut: 'd'
+					}
+				}
+			}
+		};
 
-        this.hooks = {
-            "invoke:invoke": () => BbPromise.bind(this).then(this.invokeFunction)
-        };
+		this.hooks = {
+			'invoke:invoke': () => BbPromise.bind(this).then(this.invokeFunction)
+		};
 
-        this.serverless.cli.log("Configuring FaaS Invoke plugin");
-    }
+		this.serverless.cli.log('Configuring FaaS Invoke plugin');
+	}
 
-    invokeFunction() {
-        return new BbPromise((resolve, reject) => {
-                this.serverless.cli.log("Attempting to invoke " + this.options.function);
+	invokeFunction() {
+		return new BbPromise((resolve, reject) => {
+			this.serverless.cli.log('Attempting to invoke ' + this.options.function);
 
-                let options = {
-                  method: 'POST',
-                  body: this.options.data
-                }
+			const options = {
+				method: 'POST',
+				body: this.options.data
+			};
 
-                got(`http://localhost:8080/function/${this.options.function}`, options)
-                  .then((res) => console.log(res.body))
-                  .catch((err) => console.log(err))
+			got(`http://localhost:8080/function/${this.options.function}`, options)
+                  .then(res => console.log(res.body))
+                  .catch(err => console.log(err));
 
-            resolve();
-          }
-        )
-    }
+			resolve();
+		}
+        );
+	}
 }
 
 module.exports = FaaSInvoke;
