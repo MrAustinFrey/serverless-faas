@@ -2,41 +2,40 @@
 
 const _ = require('lodash');
 const BbPromise = require('bluebird');
-const Docker = require('dockerode');
-const build = require('./build');
+const pack = require('./pack');
 
-class FaaSBuild {
+class FaaSPackage {
 	constructor(serverless, options) {
 		this.serverless = serverless;
 		this.options = options || {};
 		this.provider = this.serverless.getProvider('faas');
 		this.commands = {
-			build: {
+			package: {
 				lifecycleEvents: [
-					'build'
+					'package'
 				],
 				usage: 'Bundle function for deployment on OpenFaaS'
 			}
 		};
 
 		this.hooks = {
-			'build:build': () => BbPromise.bind(this).then(this.buildFunction)
+			'package:package': () => BbPromise.bind(this).then(this.packageFunction)
 		};
 
-		this.serverless.cli.log('Configuring FaaS Build plugin');
+		this.serverless.cli.log('Configuring FaaS Package plugin');
 	}
 
-	buildFunction() {
-		this.serverless.cli.log('Attempting to build');
+	packageFunction() {
+		this.serverless.cli.log('Attempting to package');
 
-		return new BbPromise((resolve, reject) => {
+		return new BbPromise(resolve => {
 			_.each(this.serverless.service.functions, (description, name) => {
-				this.serverless.cli.log('Attempting to build ' + name);
-				build(name, 'node');
+				this.serverless.cli.log('Attempting to package ' + name);
+				pack();
 			});
 			resolve();
 		});
 	}
 }
 
-module.exports = FaaSBuild;
+module.exports = FaaSPackage;

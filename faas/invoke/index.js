@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const BbPromise = require('bluebird');
 const got = require('got');
 
@@ -30,7 +29,7 @@ class FaaSInvoke {
 	}
 
 	invokeFunction() {
-		return new BbPromise((resolve, reject) => {
+		return new BbPromise(resolve => {
 			this.serverless.cli.log('Attempting to invoke ' + this.options.function);
 
 			const options = {

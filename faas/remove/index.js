@@ -18,7 +18,7 @@ class FaaSRemove {
 	}
 
 	removeFunction() {
-		return new BbPromise((resolve, reject) => {
+		return new BbPromise(resolve => {
 			_.each(this.serverless.service.functions, (description, name) => {
 				this.serverless.cli.log('Attempting to remove ' + name);
 
