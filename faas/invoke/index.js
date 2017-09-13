@@ -29,7 +29,7 @@ class FaaSInvoke {
 	}
 
 	invokeFunction() {
-		new BbPromise((resolve) => {
+		return new BbPromise(resolve => {
 			this.serverless.cli.log('Attempting to invoke ' + this.options.function);
 
 			const options = {
@@ -38,9 +38,12 @@ class FaaSInvoke {
 			};
 
 			got(`http://localhost:8080/function/${this.options.function}`, options)
-				.then(res => this.serverless.cli.log(res.body))
+				.then(res => {
+					this.serverless.cli.log(res.body);
+					resolve();
+				})
 				.catch(err => console.log(err));
-		})
+		});
 	}
 }
 

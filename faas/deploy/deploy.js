@@ -1,7 +1,7 @@
-"use strict"
+'use strict';
 
-const BbPromise = require('bluebird')
-const got = require('got')
+const BbPromise = require('bluebird');
+const got = require('got');
 
 const deploy = (funcName, imageName) => {
 	return new BbPromise((resolve, reject) => {
@@ -13,13 +13,13 @@ const deploy = (funcName, imageName) => {
 				network: 'func_functions',
 				image: imageName
 			}
-		}
+		};
 
 		got('http://localhost:8080/system/functions', options)
-			.then((res) => resolve(res))
-			.catch((err) => reject(err))
-		}
-	)
-}
+			.then(res => resolve(res))
+			.catch(err => reject(err));
+	}
+	);
+};
 
 module.exports = deploy;

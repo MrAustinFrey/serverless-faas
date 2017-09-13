@@ -27,11 +27,11 @@ class FaaSInit {
 	initFunction() {
 		this.serverless.cli.log('Attempting to launch the OpenFaaS framework.');
 
-//		return new BbPromise(resolve => {
-			this.serverless.cli.log('launching...');
-			init();
+//		Return new BbPromise(resolve => {
+		this.serverless.cli.log('launching...');
+		init();
 
-//			resolve();
+//			Resolve();
 //		});
 	}
 }

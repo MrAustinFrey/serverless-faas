@@ -27,11 +27,11 @@ class FaaSPackage {
 
 	packageFunction() {
 		this.serverless.cli.log('Attempting to package');
-		return new BbPromise((resolve, reject) => {
+		return new BbPromise(resolve => {
 			_.each(this.serverless.service.functions, (description, name) => {
 				this.serverless.cli.log('Attempting to package ' + name);
 				pack()
-					.then((res) => this.serverless.cli.log(`Packaged function: ${name}`))
+					.then(res => this.serverless.cli.log(`Packaged function: ${name}`))
 					.then(() => resolve());
 			});
 		});
