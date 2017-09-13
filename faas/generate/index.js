@@ -18,6 +18,11 @@ class FaaSGenerate {
 						usage: 'Specify an OpenFaaS template.',
 						required: true,
 						shortcut: 't'
+					},
+					name: {
+						usage: 'Specify the function name.',
+						required: true,
+						shortcut: 'n'
 					}
 				},
 				usage: 'Setup OpenFaaS function boilerplate'
@@ -32,16 +37,11 @@ class FaaSGenerate {
 	}
 
 	generateFunction() {
-		this.serverless.cli.log('Attempting to generate');
-		this.serverless.cli.log(JSON.stringify(this.serverless.service.functions));
-
-		return new BbPromise(resolve => {
+		return new BbPromise((resolve) => {
 			this.serverless.cli.log('Attempting to generate OpenFaaS ' +
 				this.options.template + ' boilerplate...');
 			generate(this.options.template, this.options.name);
-
-			resolve();
-		});
+		})
 	}
 }
 

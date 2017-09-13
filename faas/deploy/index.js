@@ -19,14 +19,14 @@ class FaaSDeploy {
 
 	deployFunction() {
 		this.serverless.cli.log('Attempting to deploy');
-		return new BbPromise(resolve => {
+		return new BbPromise((resolve) => {
 			_.each(this.serverless.service.functions, (description, name) => {
 				this.serverless.cli.log('Attempting to deploy ' + name);
 
-				deploy(name, description.image);
+				deploy(name, description.image)
+					.then((res) => this.serverless.cli.log(`Deployed function: ${name}`))
+					.then(() => resolve())
 			});
-
-			resolve();
 		});
 	}
 }

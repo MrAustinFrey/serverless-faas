@@ -1,7 +1,5 @@
 'use strict';
 
-// Const BbPromise = require('bluebird');
-
 const constants = {
 	providerName: 'faas'
 };

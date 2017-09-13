@@ -18,7 +18,7 @@ class FaaSRemove {
 	}
 
 	removeFunction() {
-		return new BbPromise(resolve => {
+		return new BbPromise((resolve) => {
 			_.each(this.serverless.service.functions, (description, name) => {
 				this.serverless.cli.log('Attempting to remove ' + name);
 
@@ -31,12 +31,11 @@ class FaaSRemove {
 				};
 
 				got('http://localhost:8080/system/functions', options)
-                  .then(res => this.serverless.cli.log(res.body))
-                  .catch(err => this.serverless.cli.log(err));
+					.then(res => this.serverless.cli.log(`Removed function: ${name}`))
+					.then(() => resolve())
+					.catch(err => this.serverless.cli.log(err));
 			});
-
-			resolve();
-		});
+		})
 	}
 }
 
