@@ -5,8 +5,7 @@ layout: Doc
 -->
 
 <!-- DOCS-SITE-LINK:START automatically generated  -->
-### [Read this on the main serverless docs
-site](https://www.serverless.com/framework/docs/)
+### [Read this on the main serverless docs site](https://www.serverless.com/framework/docs/)
 <!-- DOCS-SITE-LINK:END -->
 
 # OpenFaaS Provider Documentation
@@ -39,7 +38,7 @@ gitter](https://gitter.im/serverless/serverless)
     <div>
       <ul>
         <li><a href="./cli-reference/create.md">Create</a><li>
-        <li><a href="./cli-reference/deploy.md>Deploy</a></li>
+        <li><a href="./cli-reference/deploy.md">Deploy</a></li>
         <li><a href="./cli-reference/invoke.md">Invoke</a></li>
         <li><a href="./cli-reference/remove.md">Remove</a></li>
         <li><a href="./cli-reference/package.md">Package</a></li>
